@@ -1,9 +1,18 @@
 package org.brohede.marcus.listviewapp;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,15 +39,28 @@ public class MainActivity extends AppCompatActivity {
         // Here you should enter your code that fills the ListView
         // 1. Create an array
         // 2. Create a List object with your array from step 1 as in-data
+        List<String> arrayList = new ArrayList<>(Arrays.asList(mountainNames));
         // 3. Create an ArrayAdapter object that connects
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_item_textview, R.id.my_item_textview, arrayList);
         //    * list_item_textview
         //    * my_item_textview
         //    * List object created in step 2
         // 4. Find the ListView layout element "my_listview" and create an object instance
+        final ListView lw = (ListView) findViewById(R.id.my_listview);
         // 5. Connect the ArrayAdapter from step 3 with ListView object created in step 4
+        lw.setAdapter(arrayAdapter);
         // 6. Style the ListView items according to Material Design
         //    See: https://material.io/guidelines/components/lists.html#lists-specs
         //    Look for "singel line specs" for "text only" lists and modify the list_item_textview
         //    accordingly
+
+        // toast = Toast.makeText(getApplicationContext(), "Hello World", Toast.LENGTH_SHORT);
+
+        lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("EMIL", mountainNames[position]);
+            }
+        });
     }
 }
