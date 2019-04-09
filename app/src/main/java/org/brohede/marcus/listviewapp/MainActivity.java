@@ -54,12 +54,11 @@ public class MainActivity extends AppCompatActivity {
         //    Look for "singel line specs" for "text only" lists and modify the list_item_textview
         //    accordingly
 
-        // toast = Toast.makeText(getApplicationContext(), "Hello World", Toast.LENGTH_SHORT);
-
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("EMIL", mountainNames[position]);
+                Toast.makeText(getApplicationContext(), "Mountain: " + mountainNames[position] + "\nLocation: " + mountainLocations[position] + "\nHeight: " + mountainHeights[position], Toast.LENGTH_SHORT).show();
             }
         });
     }
